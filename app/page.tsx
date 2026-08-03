@@ -3,6 +3,8 @@
 import { ArrowRight } from "lucide-react";
 import Navbar from "./components/Navbar";
 import BoomerangVideoBg from "./components/BoomerangVideoBg";
+import Footer from "./components/Footer";
+import BentoSection from "./components/BentoSection";
 
 /* ─── static data ─────────────────────────────────────────────────────────── */
 
@@ -80,12 +82,26 @@ const testimonials = [
 
 const Home = () => {
   return (
-    <div className="bg-white overflow-x-hidden">
+    <div className="bg-white overflow-x-hidden scroll-smooth">
       <Navbar />
 
       {/* ── HERO ────────────────────────────────────────────────────────── */}
-      <section className="relative flex flex-col items-center overflow-hidden min-h-screen">
+      {/*
+        The hero section now uses `pb-0` so the info panel sits right at the
+        very bottom edge. The panel itself has `mb-[-120px]` to pull it down
+        and overlap the white HOW-IT-WORKS section below.
+      */}
+      <section className="relative flex flex-col items-center overflow-visible min-h-screen">
+        {/* Video background with a gradient fade at the bottom */}
         <BoomerangVideoBg />
+        {/* Smooth bottom blend — fades the video into white, sits above the video z-0 */}
+        <div
+          className="absolute bottom-0 left-0 right-0 z-1 h-64 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,1) 100%)",
+          }}
+        />
 
         {/* Hero copy */}
         <div className="relative z-10 flex flex-col items-center text-center pt-28 sm:pt-32 md:pt-40 px-4 sm:px-6 pb-16 sm:pb-64 w-full">
@@ -109,10 +125,13 @@ const Home = () => {
           </a>
         </div>
 
-        {/* Bottom info panel — flush to bottom, connects to white page below */}
-        <div className="mt-auto w-full max-w-5xl px-4 sm:px-6 relative z-10">
+        {/*
+          Info panel — overlaps the section below via negative margin.
+          It sits at the natural bottom of the hero section, and the
+          `mb-[-120px]` (desktop) pushes it into the HOW-IT-WORKS section.
+        */}
+        <div className="mt-auto w-full max-w-5xl px-4 sm:px-6 relative z-20">
           <div className="bg-white/90 backdrop-blur-sm border border-gray-200 border-b-0 pt-8 sm:pt-12 md:pt-16 px-5 sm:px-8 md:px-12 pb-8 md:pb-12 shadow-sm">
-
             {/* Row 1 — 2 cols */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-16">
               <div>
@@ -159,22 +178,30 @@ const Home = () => {
       </section>
 
       {/* ── HOW IT WORKS ────────────────────────────────────────────────── */}
-      {/* No top border / padding gap — the hero panel's border-b-0 means this
-          white section flows directly from the glass card above */}
+      {/*
+        Extra top padding absorbs the overlapping info panel.
+        The heading is pinned left, the descriptor text is pinned right
+        with `ml-auto` so they span the full row and feel balanced.
+      */}
       <section
         id="product"
-        className="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-36 pb-24 sm:pb-32 md:pb-40"
+        className="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-48 sm:pt-52 md:pt-60 pb-24 sm:pb-32 md:pb-40"
       >
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14 sm:mb-20">
-          <div>
+          {/* LEFT — heading */}
+          <div className="shrink-0">
             <span className="text-[11px] uppercase tracking-[0.2em] text-[#191919]/40 font-medium">
               HOW IT WORKS
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-normal leading-tight tracking-tight">
-              From setup to<br />live in days.
+              From setup to
+              <br />
+              live in days.
             </h2>
           </div>
-          <p className="text-sm text-[#191919]/60 leading-relaxed max-w-xs sm:text-right">
+
+          {/* RIGHT — descriptor, aligned end so it sits at the baseline of the heading */}
+          <p className="text-sm text-[#191919]/60 leading-relaxed max-w-[260px] sm:text-right ml-auto">
             No lengthy implementations. Boomerang is built to ship fast and
             integrate into workflows you already run.
           </p>
@@ -201,10 +228,7 @@ const Home = () => {
       </section>
 
       {/* ── CHANNELS ────────────────────────────────────────────────────── */}
-      <section
-        id="solutions"
-        className="w-full bg-[#F4F3F3]"
-      >
+      <section id="solutions" className="w-full bg-[#F4F3F3]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24 sm:py-32 md:py-40">
           <span className="text-[11px] uppercase tracking-[0.2em] text-[#191919]/40 font-medium">
             THE PLATFORM
@@ -293,22 +317,24 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ── BENTO GRID ──────────────────────────────────────────────────── */}
+      <BentoSection />
+
       {/* ── PRICING TEASER ──────────────────────────────────────────────── */}
-      <section
-        id="pricing"
-        className="w-full bg-[#F4F3F3]"
-      >
+      <section id="pricing" className="w-full bg-[#F4F3F3]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24 sm:py-32 md:py-40 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-24 items-center">
           <div>
             <span className="text-[11px] uppercase tracking-[0.2em] text-[#191919]/40 font-medium">
               PRICING
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-normal leading-tight tracking-tight">
-              Priced for<br />scale.
+              Priced for
+              <br />
+              scale.
             </h2>
             <p className="mt-6 text-sm text-[#191919]/60 leading-relaxed max-w-sm">
-              Usage-based pricing that grows with your portfolio — no
-              per-seat fees, no hidden minimums. Talk to us about your volume.
+              Usage-based pricing that grows with your portfolio — no per-seat
+              fees, no hidden minimums. Talk to us about your volume.
             </p>
             <a
               href="#demo"
@@ -320,9 +346,21 @@ const Home = () => {
 
           <div className="flex flex-col gap-4">
             {[
-              { tier: "Starter", note: "Up to 10k conversations / mo", price: "Custom" },
-              { tier: "Growth", note: "10k – 100k conversations / mo", price: "Custom" },
-              { tier: "Enterprise", note: "Unlimited + dedicated support", price: "Custom" },
+              {
+                tier: "Starter",
+                note: "Up to 10k conversations / mo",
+                price: "Custom",
+              },
+              {
+                tier: "Growth",
+                note: "10k – 100k conversations / mo",
+                price: "Custom",
+              },
+              {
+                tier: "Enterprise",
+                note: "Unlimited + dedicated support",
+                price: "Custom",
+              },
             ].map((p) => (
               <div
                 key={p.tier}
@@ -333,7 +371,9 @@ const Home = () => {
                   <p className="text-xs text-[#191919]/50 mt-0.5">{p.note}</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-medium text-[#191919]/60">{p.price}</span>
+                  <span className="text-sm font-medium text-[#191919]/60">
+                    {p.price}
+                  </span>
                   <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-[#191919] group-hover:translate-x-0.5 transition-all duration-200" />
                 </div>
               </div>
@@ -342,55 +382,33 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── CLOSING CTA ─────────────────────────────────────────────────── */}
-      <section
-        id="demo"
-        className="w-full bg-[#191919]"
-      >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-28 sm:py-36 md:py-48 flex flex-col items-center text-center gap-8">
-          <span className="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">
-            GET STARTED
-          </span>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-normal leading-tight tracking-tight text-white max-w-2xl">
-            Ready to close the loop?
-          </h2>
-          <p className="text-sm text-white/60 leading-relaxed max-w-sm">
-            Book a 30-minute demo and see Boomerang running on your actual
-            loan data — no pitch deck, no slides.
-          </p>
-          <a
-            href="mailto:demo@boomerang.ai"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#191919] text-sm font-medium rounded-lg hover:bg-white/90 transition-colors duration-200"
-          >
-            Book A Demo <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-      </section>
+      {/* ── CTA + FOOTER — together they fill exactly one screen height ── */}
+      <div className="h-screen w-full bg-[#191919] flex flex-col overflow-hidden">
+        {/* ── CLOSING CTA ─────────────────────────────────────────────────── */}
+        <section id="demo" className="flex-1 w-full flex items-center justify-center">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center gap-8">
+            <span className="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">
+              GET STARTED
+            </span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-normal leading-tight tracking-tight text-white max-w-2xl">
+              Ready to close the loop?
+            </h2>
+            <p className="text-sm text-white/60 leading-relaxed max-w-sm">
+              Book a 30-minute demo and see Boomerang running on your actual
+              loan data — no pitch deck, no slides.
+            </p>
+            <a
+              href="mailto:demo@boomerang.ai"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#191919] text-sm font-medium rounded-lg hover:bg-white/90 transition-colors duration-200"
+            >
+              Book A Demo <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </section>
 
-      {/* ── FOOTER ──────────────────────────────────────────────────────── */}
-      <footer className="w-full bg-[#191919] border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="flex items-center gap-2.5">
-            {/* Reuse logo mark inline */}
-            <svg viewBox="0 0 256 256" fill="currentColor" className="w-5 h-5 text-white/80" aria-hidden="true">
-              <path d="M 144 256 L 27.598 256 L 144 139.598 Z" />
-              <path d="M 256 207.5 L 200 256 L 200 56 L 0 56 L 48 0 L 256 0 Z" />
-              <path d="M 0 204.402 L 0 112 L 92.402 112 Z" />
-            </svg>
-            <span className="text-sm font-semibold text-white/80 tracking-tight">Boomerang</span>
-          </div>
-          <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} Boomerang AI, Inc. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            {["Privacy", "Terms", "Security"].map((l) => (
-              <a key={l} href="#" className="text-xs text-white/40 hover:text-white/70 transition-colors duration-200">
-                {l}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer>
+        {/* ── FOOTER ──────────────────────────────────────────────────────── */}
+        <Footer />
+      </div>
     </div>
   );
 };
