@@ -18,7 +18,14 @@ const BoomerangVideoBg = () => {
 
   const captureFrame = useCallback(() => {
     const video = videoRef.current;
-    if (!video || video.paused || video.ended || !video.videoWidth || !video.videoHeight) return;
+    if (
+      !video ||
+      video.paused ||
+      video.ended ||
+      !video.videoWidth ||
+      !video.videoHeight
+    )
+      return;
     if (video.currentTime === lastCapturedTimeRef.current) return;
 
     lastCapturedTimeRef.current = video.currentTime;

@@ -20,8 +20,8 @@ const navLinks = [
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 m-4 mt-2 px-2 sm:px-6 md:px-10 py-0 sm:py-4 backdrop-blur-2xl rounded-xl sm:rounded-2xl md:rounded-3xl">
-      {/* <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-10 md:px-14 py-4 sm:py-5 backdrop-blur-2xl rounded-xl sm:rounded-2xl md:rounded-3xl"> */}
+    // <nav className="fixed top-0 left-0 right-0 z-50 m-4 mt-2 px-2 sm:px-6 md:px-10 py-0 sm:py-4 backdrop-blur-2xl rounded-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-10 md:px-14 py-4 sm:py-5 backdrop-blur-2xl rounded-xl sm:rounded-2xl md:rounded-3xl">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5">
