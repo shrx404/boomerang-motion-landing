@@ -3,46 +3,46 @@
 /*
   Grid anatomy (mirrors the reference image exactly):
 
-  ┌──────────────────────────────┬─────────────────────┐  ← row 1 (340px)
-  │  Card A  (col 1–7, row 1)   │  Card B (col 8–12)  │
-  │  cream  — large headline    │  forest green        │
-  └──────┬───────────┬───────────┴──────────────────────┘  ← row 2 (300px)
-  │ Card │  Card D-1 │                                  │
-  │  C   ├───────────┤  Card E  (col 7–12, row 2)      │
-  │ red  │  Card D-2 │  cream — social proof            │
-  └──────┴───────────┴──────────────────────────────────┘
-  col: 1–3   4–6      7–12
+  ┌──────────────────────────────────┬──────────────────────┐  ← row 1 (380px)
+  │  Card A  (col 1–7, row 1)       │  Card B (col 8–12)   │
+  │  cream  — large headline         │  forest green         │
+  └─────────────┬────────────┬───────┴──────────────────────┘  ← row 2 (380px)
+  │  Card C     │  Card D    │                               │
+  │  (col 1-4)  │  (col 5-7) │  Card E  (col 8–12, row 2)  │
+  │  red card   │  D-1 cream │  cream — social proof         │
+  │             │  D-2 green │                               │
+  └─────────────┴────────────┴───────────────────────────────┘
 
-  12-column grid, 2 explicit rows.
-  Card D lives in a flex-col container that sits in col 4–6, row 2.
+  12-column grid, 2 explicit rows, both 380px.
+  Bottom: col-span-4 (red) + col-span-3 (stacked) + col-span-5 (big cream).
+  This makes bottom-right left-edge align with top-right left-edge (col 8).
 */
 
 const BentoSection = () => {
   return (
     <section className="w-full bg-[#0D0D0D] py-20 sm:py-28">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 w-full">
-
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-0 w-full">
         {/* ── Section header */}
         <div className="mb-10 sm:mb-14">
           <span className="text-[11px] uppercase tracking-[0.2em] text-white/30 font-medium">
             THE FULL PICTURE
           </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-normal leading-tight tracking-tight text-white max-w-xl">
-            Everything you need,{" "}
-            <span className="italic">nothing</span> you don&apos;t.
+          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-normal leading-tight tracking-tight text-white max-w-xl whitespace-pre-wrap">
+            Everything you need, <span className="italic">nothing </span>
+            {" you "}don&apos;t.
           </h2>
         </div>
 
         {/* ─────────────────────────────────────────────────────────────────
             BENTO GRID
             12 cols · 2 rows · gap-3
-            Row heights: 340px (top) 300px (bottom)
+            Both rows: 380px  (equal, matching reference proportions)
+            Bottom split: 4 + 3 + 5 = 12  so bottom-right aligns with top-right
         ───────────────────────────────────────────────────────────────── */}
         <div
           className="grid grid-cols-12 gap-3"
-          style={{ gridTemplateRows: "340px 300px" }}
+          style={{ gridTemplateRows: "380px 380px" }}
         >
-
           {/* ── CARD A — Large headline (col 1-7, row 1) ─────────────────── */}
           <div className="col-span-7 row-start-1 bg-[#F0EBE0] rounded-3xl p-10 flex flex-col justify-between overflow-hidden relative">
             {/* Decorative blobs */}
@@ -58,7 +58,8 @@ const BentoSection = () => {
 
             {/* Main display text */}
             <div className="relative z-10 flex-1 flex flex-col justify-center py-4">
-              <h3 className="font-serif font-normal text-[#191919] leading-[0.9] tracking-tight"
+              <h3
+                className="font-serif font-normal text-[#191919] leading-[0.9] tracking-tight"
                 style={{ fontSize: "clamp(3.5rem, 6vw, 5.5rem)" }}
               >
                 close
@@ -68,23 +69,25 @@ const BentoSection = () => {
 
               {/* Floating feature pills — mimics the character labels in the ref */}
               <div className="flex flex-wrap gap-2 mt-7">
-                {["Email", "SMS", "Voice", "Compliant", "Audit-ready"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs font-medium text-[#191919]/60 bg-[#191919]/[0.07] border border-[#191919]/[0.1] rounded-full px-3.5 py-1.5"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                {["Email", "SMS", "Voice", "Compliant", "Audit-ready"].map(
+                  (tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs font-medium text-[#191919]/60 bg-[#191919]/[0.07] border border-[#191919]/[0.1] rounded-full px-3.5 py-1.5"
+                    >
+                      {tag}
+                    </span>
+                  ),
+                )}
               </div>
             </div>
 
             {/* Bottom descriptor */}
             <div className="relative z-10">
-              <p className="text-sm text-[#191919]/55 leading-relaxed max-w-xs">
+              {/* <p className="text-sm text-[#191919]/55 leading-relaxed max-w-xs">
                 Boomerang agents hold real conversations across every channel —
                 and show their work every step of the way.
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -106,8 +109,18 @@ const BentoSection = () => {
                 {/* Left node */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-14 h-14 rounded-full bg-white/[0.1] border border-white/20 flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-white/70" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="w-6 h-6 text-white/70"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                      />
                     </svg>
                   </div>
                   <span className="text-[10px] text-white/40">Your LOS</span>
@@ -123,8 +136,18 @@ const BentoSection = () => {
                 {/* Right node */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-14 h-14 rounded-full bg-white/[0.1] border border-white/20 flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-white/70" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="w-6 h-6 text-white/70"
+                      stroke="currentColor"
+                      strokeWidth={1.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      />
                     </svg>
                   </div>
                   <span className="text-[10px] text-white/40">Boomerang</span>
@@ -133,20 +156,26 @@ const BentoSection = () => {
             </div>
 
             <div className="relative z-10">
-              <p className="text-3xl font-serif font-normal text-white leading-none tracking-tight">18M+</p>
-              <p className="mt-1 text-xs text-white/40">borrower conversations handled</p>
+              <p className="text-3xl font-serif font-normal text-white leading-none tracking-tight">
+                18M+
+              </p>
+              <p className="mt-1 text-xs text-white/40">
+                borrower conversations handled
+              </p>
             </div>
           </div>
 
-          {/* ── CARD C — Red event card (col 1-3, row 2) ─────────────────── */}
-          <div className="col-span-3 row-start-2 bg-[#C41C26] rounded-3xl p-7 flex flex-col justify-between overflow-hidden relative">
+          {/* ── CARD C — Red event card (col 1-4, row 2) ─────────────────── */}
+          <div className="col-span-4 row-start-2 bg-[#C41C26] rounded-3xl p-7 flex flex-col justify-between overflow-hidden relative">
             {/* Subtle grain texture overlay */}
             <div className="absolute inset-0 opacity-[0.04] bg-[repeating-linear-gradient(45deg,#fff_0px,#fff_1px,transparent_1px,transparent_8px)] pointer-events-none rounded-3xl" />
 
             <div className="relative z-10">
               {/* Date / time bar */}
               <div className="flex items-center justify-between mb-5">
-                <span className="text-[11px] text-white/70 font-medium">15 Mar</span>
+                <span className="text-[11px] text-white/70 font-medium">
+                  15 Mar
+                </span>
                 <span className="text-[11px] text-white/50">09:00–10:00</span>
               </div>
 
@@ -154,14 +183,17 @@ const BentoSection = () => {
               <div className="flex items-start gap-3">
                 <div>
                   <h3 className="text-2xl font-serif font-normal text-white leading-tight tracking-tight">
-                    Loan<br />Renewal
+                    Loan
+                    <br />
+                    Renewal
                     <span className="inline-block ml-2 text-lg">✦</span>
                   </h3>
                 </div>
               </div>
 
               <p className="mt-3 text-xs text-white/60 leading-relaxed">
-                Automated renewal outreach triggered for 847 borrowers expiring this quarter.
+                Automated renewal outreach triggered for 847 borrowers expiring
+                this quarter.
               </p>
             </div>
 
@@ -172,20 +204,26 @@ const BentoSection = () => {
             </div>
           </div>
 
-          {/* ── CARD D — Two stacked cards (col 4-6, row 2) ──────────────── */}
+          {/* ── CARD D — Two stacked cards (col 5-7, row 2) ──────────────── */}
           <div className="col-span-3 row-start-2 flex flex-col gap-3">
-
             {/* D-1 : Logo / brand card (cream) */}
             <div className="flex-1 bg-[#F0EBE0] rounded-3xl flex items-center justify-center p-6 overflow-hidden relative">
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-[#d6ccbd]/50 pointer-events-none" />
               <div className="relative z-10 flex items-center gap-2.5">
                 {/* Boomerang logo mark */}
-                <svg viewBox="0 0 256 256" fill="currentColor" className="w-7 h-7 text-[#191919]" aria-hidden="true">
+                <svg
+                  viewBox="0 0 256 256"
+                  fill="currentColor"
+                  className="w-7 h-7 text-[#191919]"
+                  aria-hidden="true"
+                >
                   <path d="M 144 256 L 27.598 256 L 144 139.598 Z" />
                   <path d="M 256 207.5 L 200 256 L 200 56 L 0 56 L 48 0 L 256 0 Z" />
                   <path d="M 0 204.402 L 0 112 L 92.402 112 Z" />
                 </svg>
-                <span className="text-2xl font-serif font-normal text-[#191919] tracking-tight">boomerang</span>
+                <span className="text-2xl font-serif font-normal text-[#191919] tracking-tight">
+                  boomerang
+                </span>
               </div>
             </div>
 
@@ -195,14 +233,22 @@ const BentoSection = () => {
               <div className="flex flex-col gap-2">
                 <div className="flex items-end gap-2 justify-end">
                   <div className="bg-white/[0.08] rounded-2xl rounded-br-sm px-3.5 py-2 max-w-[80%]">
-                    <p className="text-xs text-white/80">Hi! When does my loan renew?</p>
+                    <p className="text-xs text-white/80">
+                      Hi! When does my loan renew?
+                    </p>
                   </div>
-                  <div className="w-5 h-5 rounded-full bg-white/20 shrink-0 flex items-center justify-center text-[8px] text-white/60">J</div>
+                  <div className="w-5 h-5 rounded-full bg-white/20 shrink-0 flex items-center justify-center text-[8px] text-white/60">
+                    J
+                  </div>
                 </div>
                 <div className="flex items-end gap-2">
-                  <div className="w-5 h-5 rounded-full bg-[#4ade80]/20 shrink-0 flex items-center justify-center text-[8px] text-[#4ade80]">AI</div>
+                  <div className="w-5 h-5 rounded-full bg-[#4ade80]/20 shrink-0 flex items-center justify-center text-[8px] text-[#4ade80]">
+                    AI
+                  </div>
                   <div className="bg-[#4ade80]/15 border border-[#4ade80]/20 rounded-2xl rounded-bl-sm px-3.5 py-2 max-w-[80%]">
-                    <p className="text-xs text-white/80">I&apos;ll be in touch soon!</p>
+                    <p className="text-xs text-white/80">
+                      I&apos;ll be in touch soon!
+                    </p>
                   </div>
                 </div>
               </div>
@@ -215,18 +261,23 @@ const BentoSection = () => {
                     className="w-6 h-6 rounded-full border-2 border-[#1A3D2B] flex items-center justify-center"
                     style={{ backgroundColor: c + "33", borderColor: c + "40" }}
                   >
-                    <span className="text-[8px] font-medium" style={{ color: c }}>
+                    <span
+                      className="text-[8px] font-medium"
+                      style={{ color: c }}
+                    >
                       {["J", "M", "S"][i]}
                     </span>
                   </div>
                 ))}
-                <p className="text-[10px] text-white/35 ml-1">120+ institutions active</p>
+                <p className="text-[10px] text-white/35 ml-1">
+                  120+ institutions active
+                </p>
               </div>
             </div>
           </div>
 
-          {/* ── CARD E — Social proof / trust (col 7-12, row 2) ──────────── */}
-          <div className="col-span-6 row-start-2 bg-[#F0EBE0] rounded-3xl p-10 flex flex-col justify-between overflow-hidden relative">
+          {/* ── CARD E — Social proof / trust (col 8-12, row 2) ──────────── */}
+          <div className="col-span-5 row-start-2 bg-[#F0EBE0] rounded-3xl p-10 flex flex-col justify-between overflow-hidden relative">
             {/* Decorative large circle */}
             <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-[#d6ccbd]/40 pointer-events-none" />
             <div className="absolute -right-6 top-1/2 -translate-y-1/2 w-52 h-52 rounded-full bg-[#ccc2b3]/30 pointer-events-none" />
@@ -240,12 +291,15 @@ const BentoSection = () => {
             <div className="relative z-10 flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-10">
               {/* Big stat */}
               <div>
-                <p className="font-serif font-normal text-[#191919] leading-none tracking-tight"
+                <p
+                  className="font-serif font-normal text-[#191919] leading-none tracking-tight"
                   style={{ fontSize: "clamp(4rem, 7vw, 6rem)" }}
                 >
                   120+
                 </p>
-                <p className="mt-2 text-sm text-[#191919]/55">financial institutions</p>
+                <p className="mt-2 text-sm text-[#191919]/55">
+                  financial institutions
+                </p>
               </div>
 
               {/* Avatar group — mimics the "people" in the reference */}
@@ -266,7 +320,9 @@ const BentoSection = () => {
                 ))}
                 <div className="ml-2">
                   <p className="text-xs text-[#191919]/50 leading-snug">
-                    VP of Servicing, CROs,<br />and Compliance Officers
+                    VP of Servicing, CROs,
+                    <br />
+                    and Compliance Officers
                   </p>
                 </div>
               </div>
@@ -274,12 +330,14 @@ const BentoSection = () => {
 
             <div className="relative z-10">
               <p className="text-sm text-[#191919]/55 leading-relaxed max-w-sm">
-                &ldquo;The audit trail alone saved us three weeks during our last exam.&rdquo;
+                &ldquo;The audit trail alone saved us three weeks during our
+                last exam.&rdquo;
               </p>
-              <p className="mt-1 text-xs text-[#191919]/35">— Marcus T., Chief Risk Officer</p>
+              <p className="mt-1 text-xs text-[#191919]/35">
+                — Marcus T., Chief Risk Officer
+              </p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
