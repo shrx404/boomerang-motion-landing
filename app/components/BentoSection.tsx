@@ -33,8 +33,8 @@ const BentoSection = () => {
             THE FULL PICTURE
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-normal leading-tight tracking-tight text-white max-w-xl">
-            Everything you need, <span className="italic">nothing</span> you
-            don&apos;t.
+            Everything you need, <span className="italic mr-0.75">nothing</span>{" "}
+            you don&apos;t.
           </h2>
         </div>
 
