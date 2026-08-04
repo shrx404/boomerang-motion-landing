@@ -91,20 +91,12 @@ const Home = () => {
         very bottom edge. The panel itself has `mb-[-120px]` to pull it down
         and overlap the white HOW-IT-WORKS section below.
       */}
-      <section className="relative flex flex-col items-center overflow-visible min-h-screen">
-        {/* Video background with a gradient fade at the bottom */}
+      <section className="relative flex flex-col items-center overflow-hidden min-h-screen pb-0">
+        {/* Video background */}
         <BoomerangVideoBg />
-        {/* Smooth bottom blend — fades the video into white, sits above the video z-0 */}
-        <div
-          className="absolute bottom-0 left-0 right-0 z-1 h-64 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,1) 100%)",
-          }}
-        />
 
         {/* Hero copy */}
-        <div className="relative z-10 flex flex-col items-center text-center pt-28 sm:pt-32 md:pt-40 px-4 sm:px-6 pb-16 sm:pb-64 w-full">
+        <div className="relative z-10 flex flex-col items-center text-center pt-28 sm:pt-32 md:pt-40 px-4 sm:px-6 pb-24 sm:pb-32 md:pb-48 w-full">
           <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight text-[#191919] font-normal">
             Build lasting
             <br />
@@ -126,12 +118,23 @@ const Home = () => {
         </div>
 
         {/*
-          Info panel — overlaps the section below via negative margin.
-          It sits at the natural bottom of the hero section, and the
-          `mb-[-120px]` (desktop) pushes it into the HOW-IT-WORKS section.
+          Info panel — perfectly integrated cutout effect (squircle).
+          The side bars create the flat bottom, and the radial gradients create the inverse rounded corners.
         */}
-        <div className="mt-auto w-full max-w-5xl px-4 sm:px-6 relative z-20">
-          <div className="bg-white/90 backdrop-blur-sm border border-gray-200 border-b-0 pt-8 sm:pt-12 md:pt-16 px-5 sm:px-8 md:px-12 pb-8 md:pb-12 shadow-sm">
+        <div className="mt-auto w-full relative z-20 flex justify-center items-end">
+          {/* Left white bar (hidden on mobile to allow full-width panel) */}
+          <div className="hidden md:block flex-1 h-[80px] lg:h-[120px] bg-white relative">
+            <div
+              className="absolute top-[-48px] right-0 w-[48px] h-[48px] pointer-events-none"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 0 0, transparent 47.5px, white 48px)",
+              }}
+            />
+          </div>
+
+          {/* Center Info Panel */}
+          <div className="w-full md:w-auto md:min-w-[720px] lg:min-w-[900px] max-w-5xl bg-white rounded-t-[32px] md:rounded-t-[48px] pt-10 sm:pt-12 md:pt-16 px-6 sm:px-8 md:px-12 pb-8 md:pb-12 relative mx-4 sm:mx-6 md:mx-0 shadow-[0_-15px_40px_rgba(0,0,0,0.04)] md:shadow-none border border-gray-100 md:border-none">
             {/* Row 1 — 2 cols */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-16">
               <div>
@@ -174,18 +177,28 @@ const Home = () => {
               ))}
             </div>
           </div>
+
+          {/* Right white bar */}
+          <div className="hidden md:block flex-1 h-[80px] lg:h-[120px] bg-white relative">
+            <div
+              className="absolute top-[-48px] left-0 w-[48px] h-[48px] pointer-events-none"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 100% 0, transparent 47.5px, white 48px)",
+              }}
+            />
+          </div>
         </div>
       </section>
 
       {/* ── HOW IT WORKS ────────────────────────────────────────────────── */}
       {/*
-        Extra top padding absorbs the overlapping info panel.
-        The heading is pinned left, the descriptor text is pinned right
-        with `ml-auto` so they span the full row and feel balanced.
+        The top padding is reduced because the Info panel now seamlessly
+        connects to this section's white background.
       */}
       <section
         id="product"
-        className="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-48 sm:pt-52 md:pt-60 pb-24 sm:pb-32 md:pb-40"
+        className="w-full max-w-5xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 md:pt-24 pb-24 sm:pb-32 md:pb-40"
       >
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14 sm:mb-20">
           {/* LEFT — heading */}
