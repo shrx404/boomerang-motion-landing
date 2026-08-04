@@ -25,11 +25,12 @@ const AboutUsSection = () => {
             </p>
 
             {/* Image Box */}
-            <div className="mt-20 w-[170px] h-[170px] bg-[#F4F3F3] rounded-2xl overflow-hidden relative">
+            <div className="mt-20 w-[250px] h-[250px] bg-[#F4F3F3] rounded-2xl overflow-hidden relative">
               <img
-                src="https://images.unsplash.com/photo-1521369909029-2afed882ba54?q=80&w=800&auto=format&fit=crop"
-                alt="Hat on stool"
+                src="/sketches/architect-hand-drawn.png"
+                alt="Dark Mode Blueprint Sketch"
                 className="object-cover w-full h-full"
+                // className="object-cover w-full h-full contrast-[115%] brightness-[150%]"
               />
             </div>
           </div>
