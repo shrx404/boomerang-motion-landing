@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import BoomerangVideoBg from "./components/BoomerangVideoBg";
 import Footer from "./components/Footer";
 import BentoSection from "./components/BentoSection";
+import AboutUsSection from "./components/AboutUsSection";
+import SocialProofSection from "./components/SocialProofSection";
 
 /* ─── static data ─────────────────────────────────────────────────────────── */
 
@@ -335,6 +337,10 @@ const Home = () => {
 
       {/* ── BENTO GRID ──────────────────────────────────────────────────── */}
       <BentoSection />
+
+      {/* ── ABOUT US & SOCIAL PROOF ─────────────────────────────────────── */}
+      <AboutUsSection />
+      <SocialProofSection />
 
       {/* ── PRICING TEASER ──────────────────────────────────────────────── */}
       <section id="pricing" className="w-full bg-[#F4F3F3]">
