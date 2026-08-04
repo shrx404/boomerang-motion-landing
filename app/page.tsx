@@ -159,11 +159,12 @@ const Home = () => {
             <div className="mt-6 sm:mt-8 md:mt-10 h-px bg-gray-200 w-full" />
 
             {/* Feature pill rows */}
+            {/* <div className="grid grid-cols-1 sm:grid-cols-1 gap-2 sm:gap-3 mt-6 sm:mt-8 md:mt-10 md:flex md:flex-col mx-auto"> */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 mt-6 sm:mt-8 md:mt-10">
               {featureRows.map((item) => (
                 <div
                   key={item.number}
-                  className="group flex items-center justify-between bg-[#F4F3F3] hover:bg-[#eaeaea] transition-all duration-200 cursor-pointer px-4 sm:px-6 py-3.5 sm:py-4 rounded-md"
+                  className=" group flex items-center justify-between bg-[#F4F3F3] hover:bg-[#eaeaea] transition-all duration-200 cursor-pointer px-4 sm:px-6 py-3.5 sm:py-4 rounded-md"
                 >
                   <span className="text-sm">
                     <span className="text-[#191919]/40">{item.number}</span>
@@ -198,7 +199,7 @@ const Home = () => {
       */}
       <section
         id="product"
-        className="w-full pt-16 sm:pt-20 md:pt-16 pb-24 sm:pb-32 md:pb-40"
+        className="w-full pt-16 sm:pt-20 md:pt-12 pb-24 sm:pb-32 md:pb-32"
       >
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-4 mb-16 sm:mb-8 px-6 sm:px-10 md:px-14">
           {/* LEFT — heading */}
