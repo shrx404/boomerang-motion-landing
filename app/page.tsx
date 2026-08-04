@@ -61,7 +61,6 @@ const channels = [
   },
 ] as const;
 
-
 /* ─── page ────────────────────────────────────────────────────────────────── */
 
 const Home = () => {
@@ -228,7 +227,7 @@ const Home = () => {
       </section>
 
       {/* ── CHANNELS ────────────────────────────────────────────────────── */}
-      <section id="solutions" className="w-full bg-[#F4F3F3]">
+      {/* <section id="solutions" className="w-full bg-[#F4F3F3]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24 sm:py-32 md:py-40">
           <span className="text-[11px] uppercase tracking-[0.2em] text-[#191919]/40 font-medium">
             THE PLATFORM
@@ -264,12 +263,10 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── METRICS ─────────────────────────────────────────────────────── */}
       <MetricsSection />
-
-
 
       {/* ── BENTO GRID ──────────────────────────────────────────────────── */}
       <BentoSection />
