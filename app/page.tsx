@@ -266,13 +266,13 @@ const Home = () => {
       </section> */}
 
       {/* ── METRICS ─────────────────────────────────────────────────────── */}
+      <AboutUsSection />
       <MetricsSection />
 
       {/* ── BENTO GRID ──────────────────────────────────────────────────── */}
       <BentoSection />
 
       {/* ── ABOUT US & SOCIAL PROOF ─────────────────────────────────────── */}
-      <AboutUsSection />
       <SocialProofSection />
 
       {/* ── TESTIMONIALS ────────────────────────────────────────────────── */}
