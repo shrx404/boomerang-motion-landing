@@ -20,7 +20,7 @@ const navLinks = [
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 m-4 mt-2 px-2 sm:px-6 md:px-10 py-0 sm:py-4 backdrop-blur-2xl rounded-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 m-4 mt-2 px-3 sm:px-6 md:px-10 py-3 sm:py-4 bg-white/65 backdrop-blur-md rounded-lg">
       {/* <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-10 md:px-14 py-4 sm:py-5 backdrop-blur-2xl rounded-xl sm:rounded-2xl md:rounded-3xl"> */}
       <div className="flex items-center justify-between">
         {/* Logo */}
@@ -37,7 +37,7 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-[#191919]/70 hover:text-[#191919] transition-colors duration-200"
+              className="text-sm text-[#191919]/75 hover:text-[#191919] hover:font-bold transition-all duration-300 ease-in-out"
             >
               {link.label}
             </a>
