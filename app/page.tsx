@@ -198,9 +198,9 @@ const Home = () => {
       */}
       <section
         id="product"
-        className="w-full pt-16 sm:pt-20 md:pt-24 pb-24 sm:pb-32 md:pb-40"
+        className="w-full pt-16 sm:pt-20 md:pt-16 pb-24 sm:pb-32 md:pb-40"
       >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-4 mb-16 sm:mb-24 px-6 sm:px-10 md:px-14">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-4 mb-16 sm:mb-8 px-6 sm:px-10 md:px-14">
           {/* LEFT — heading */}
           <div className="shrink-0">
             <span className="text-[11px] uppercase tracking-[0.2em] text-[#191919]/40 font-medium">
@@ -220,11 +220,11 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 border-y border-gray-200 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 border-x border-gray-200 w-full">
           {steps.map((step) => (
             <div
               key={step.number}
-              className="bg-white px-6 sm:px-10 md:px-14 py-16 sm:py-24 md:py-32 flex flex-col gap-8 md:gap-12"
+              className="bg-white px-6 sm:px-10 md:px-14 py-10 sm:py-16 md:py-24 flex flex-col gap-6 md:gap-8"
             >
               <span className="text-sm font-medium text-[#191919]/40 tracking-widest">
                 {step.number}
@@ -400,7 +400,10 @@ const Home = () => {
       {/* ── CTA + FOOTER — together they fill exactly one screen height ── */}
       <div className="h-screen w-full bg-[#191919] flex flex-col overflow-hidden">
         {/* ── CLOSING CTA ─────────────────────────────────────────────────── */}
-        <section id="demo" className="flex-1 w-full flex items-center justify-center">
+        <section
+          id="demo"
+          className="flex-1 w-full flex items-center justify-center"
+        >
           <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center gap-8">
             <span className="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">
               GET STARTED
