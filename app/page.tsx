@@ -5,9 +5,6 @@ import Navbar from "./components/Navbar";
 import BoomerangVideoBg from "./components/BoomerangVideoBg";
 import Footer from "./components/Footer";
 import BentoSection from "./components/BentoSection";
-import BentoTheme1 from "./components/BentoTheme1";
-import BentoTheme2 from "./components/BentoTheme2";
-import BentoTheme3 from "./components/BentoTheme3";
 
 /* ─── static data ─────────────────────────────────────────────────────────── */
 
@@ -337,12 +334,7 @@ const Home = () => {
       </section>
 
       {/* ── BENTO GRID ──────────────────────────────────────────────────── */}
-      {/* <BentoSection /> */}
-      <BentoTheme1 />
-      <div className="w-full h-px bg-white/10" />
-      <BentoTheme2 />
-      <div className="w-full h-px bg-white/10" />
-      <BentoTheme3 />
+      <BentoSection />
 
       {/* ── PRICING TEASER ──────────────────────────────────────────────── */}
       <section id="pricing" className="w-full bg-[#F4F3F3]">
