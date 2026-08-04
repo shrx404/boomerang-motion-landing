@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import BentoSection from "./components/BentoSection";
 import AboutUsSection from "./components/AboutUsSection";
 import SocialProofSection from "./components/SocialProofSection";
+import PricingSection from "./components/PricingSection";
 
 /* ─── static data ─────────────────────────────────────────────────────────── */
 
@@ -343,66 +344,7 @@ const Home = () => {
       <SocialProofSection />
 
       {/* ── PRICING TEASER ──────────────────────────────────────────────── */}
-      <section id="pricing" className="w-full bg-[#F4F3F3]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24 sm:py-32 md:py-40 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-24 items-center">
-          <div>
-            <span className="text-[11px] uppercase tracking-[0.2em] text-[#191919]/40 font-medium">
-              PRICING
-            </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-serif font-normal leading-tight tracking-tight">
-              Priced for
-              <br />
-              scale.
-            </h2>
-            <p className="mt-6 text-sm text-[#191919]/60 leading-relaxed max-w-sm">
-              Usage-based pricing that grows with your portfolio — no per-seat
-              fees, no hidden minimums. Talk to us about your volume.
-            </p>
-            <a
-              href="#demo"
-              className="inline-flex items-center gap-2 mt-8 px-7 py-3.5 bg-[#191919] text-white text-sm font-medium rounded-lg hover:bg-[#191919]/90 transition-colors duration-200"
-            >
-              Talk to sales <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            {[
-              {
-                tier: "Starter",
-                note: "Up to 10k conversations / mo",
-                price: "Custom",
-              },
-              {
-                tier: "Growth",
-                note: "10k – 100k conversations / mo",
-                price: "Custom",
-              },
-              {
-                tier: "Enterprise",
-                note: "Unlimited + dedicated support",
-                price: "Custom",
-              },
-            ].map((p) => (
-              <div
-                key={p.tier}
-                className="group flex items-center justify-between bg-white border border-gray-200 px-6 py-5 rounded-lg hover:border-[#191919]/30 transition-colors duration-200 cursor-pointer"
-              >
-                <div>
-                  <p className="text-sm font-medium text-[#191919]">{p.tier}</p>
-                  <p className="text-xs text-[#191919]/50 mt-0.5">{p.note}</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-medium text-[#191919]/60">
-                    {p.price}
-                  </span>
-                  <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-[#191919] group-hover:translate-x-0.5 transition-all duration-200" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PricingSection />
 
       {/* ── CTA + FOOTER — together they fill exactly one screen height ── */}
       <div className="h-screen w-full bg-[#191919] flex flex-col overflow-hidden">
