@@ -9,6 +9,7 @@ import AboutUsSection from "./components/AboutUsSection";
 import SocialProofSection from "./components/SocialProofSection";
 import PricingSection from "./components/PricingSection";
 import MetricsSection from "./components/MetricsSection";
+import WhyChooseUsSection from "./components/WhyChooseUsSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 
 /* ─── static data ─────────────────────────────────────────────────────────── */
@@ -267,6 +268,7 @@ const Home = () => {
 
       {/* ── METRICS ─────────────────────────────────────────────────────── */}
       <AboutUsSection />
+      <WhyChooseUsSection />
       <MetricsSection />
 
       {/* ── BENTO GRID ──────────────────────────────────────────────────── */}
